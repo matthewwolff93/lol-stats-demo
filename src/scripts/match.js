@@ -130,7 +130,7 @@ class Match extends Component {
 	convertGameDuration(gameDurationInMs) {
 		const minutes = Math.floor(gameDurationInMs / 60);
 		const seconds = Math.floor(gameDurationInMs % 60);
-		return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+		return minutes + 'm ' + (seconds < 10 ? '0' : '') + seconds + 's';
 	}
 
 	render() {
