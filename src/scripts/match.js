@@ -11,6 +11,7 @@ class Match extends Component {
 		this.state = {
 			championName: null,
 			gameDuration: null,
+			outcome: null,
 			spell1: null,
 			spell2: null,
 			kda: null,
@@ -38,6 +39,7 @@ class Match extends Component {
 				const gameDuration = this.convertGameDuration(match.gameDuration);
 				const participantId = this.getParticipantId(match, this.props.accountId);
 				const participant = this.getParticipantDetails(match, participantId);
+				const outcome = this.getOutcome(participant);
 				const kda = this.getKDA(participant);
 				const level = this.getLevel(participant);
 				const totalCreepsKilled = this.getTotalCreepScore(participant);
@@ -46,6 +48,7 @@ class Match extends Component {
 				this.setState({
 					...this.state,
 					gameDuration,
+					outcome,
 					kda,
 					level,
 					totalCreepsKilled,
@@ -70,6 +73,10 @@ class Match extends Component {
 			return participant.participantId === participantId;
 		});
 		return participant;
+	}
+
+	getOutcome(participant) {
+		return participant.stats.win ? 'Victory' : 'Defeat';
 	}
 
 	getSummonerSpells(participant) {
@@ -143,7 +150,7 @@ class Match extends Component {
 							<th>Creep score per minute</th>
 						</tr>
 						<tr>
-							<td>{this.props.match.gameId}</td>
+							<td>{this.state.outcome}</td>
 							<td>{this.state.gameDuration}</td>
 							<td>{`${this.state.spell1} ${this.state.spell2}`}</td>
 							<td>{this.state.championName}</td>
