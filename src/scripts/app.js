@@ -17,21 +17,21 @@ class App extends Component {
 		const data = JSON.parse('{"matches":[{"platformId":"OC1","gameId":203143152,"champion":22,"queue":450,"season":11,"timestamp":1521436233677,"role":"DUO","lane":"MID"},{"platformId":"OC1","gameId":197983753,"champion":16,"queue":450,"season":11,"timestamp":1516435947567,"role":"NONE","lane":"MID"}],"startIndex":0,"endIndex":20,"totalGames":22}');
 		this.setState({ matches: data.matches });
 
-		this.getSummonerName(this.accountId);
+		this.fetchSummonerName(this.accountId);
 	}
 
-	getRecentMatches(accountId) {
+	fetchRecentMatches(accountId) {
 		ApiHelper.fetchApiData(`match/v3/matchlists/by-account/${this.accountId}/recent`)
 		.then(response => {
-			this.setState({ matches: response.data.matches });
+			const shortenedMatches = response.data.matches.slice(0, 4);
+			this.setState({ matches: shortenedMatches });
 		}).catch(error => console.error(error));
 	}
 
-	getSummonerName(accountId) {
+	fetchSummonerName(accountId) {
 		ApiHelper.fetchApiData(`summoner/v3/summoners/by-account/${this.accountId}`)
-			.then(response => {
-				this.setState({ summonerName: response.data.name });
-			}).catch(error => console.error(error));
+			.then(response => this.setState({ summonerName: response.data.name }))
+			.catch(error => console.error(error));
 	}
 
 	render() {
