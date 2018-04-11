@@ -21,14 +21,15 @@ class App extends Component {
 	fetchRecentMatches(accountId) {
 		ApiHelper.fetchApiData(`match/v3/matchlists/by-account/${this.accountId}/recent`)
 		.then(response => {
+			// Limit this list to 5 matches to keep the number of total API calls down
 			const shortenedMatches = response.data.matches.slice(0, 4);
-			this.setState({ matches: shortenedMatches });
+			this.setState({ ...this.state, matches: shortenedMatches });
 		}).catch(error => console.error(error));
 	}
 
 	fetchSummonerName(accountId) {
 		ApiHelper.fetchApiData(`summoner/v3/summoners/by-account/${this.accountId}`)
-			.then(response => this.setState({ summonerName: response.data.name }))
+			.then(response => this.setState({ ...this.state, summonerName: response.data.name }))
 			.catch(error => console.error(error));
 	}
 

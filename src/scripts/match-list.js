@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../styles/match-list.css';
 import Match from './match';
 import '../styles/match-list.css';
 

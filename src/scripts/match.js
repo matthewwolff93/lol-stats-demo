@@ -34,7 +34,7 @@ class Match extends Component {
 
 	getChampionName(championId) {
 		ApiHelper.fetchApiData(`static-data/v3/champions/${championId}`)
-			.then(response => this.setState({ championName: response.data.name }))
+			.then(response => this.setState({ ...this.state, championName: response.data.name }))
 			.catch(error => console.error(error));
 	}
 
