@@ -5,14 +5,16 @@ import Match from './match';
 class MatchList extends Component {
 
 	renderMatches() {
-		return this.props.matches.map((match, idx) => {
-			return <Match key={'match' + idx} match={match} />
+		const sortedMatches = this.props.matches.sort().reverse();
+		return sortedMatches.map((match, idx) => {
+			return <Match key={'match' + idx} match={match} accountId={this.props.accountId} />
 		});
 	}
 
 	render() {
 		return (
 			<div>
+				<p>Match history</p>
 				{this.renderMatches()}
 			</div>
 		);
