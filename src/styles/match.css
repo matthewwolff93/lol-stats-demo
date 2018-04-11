@@ -1,5 +1,10 @@
 .match {
 	text-align: center;
-	border: 1px solid #cccccc;
+	border: 1px solid #99ccff;
 	margin-bottom: 5px;
+	background-color: #cce6ff;
+}
+
+.match:hover {
+	border-color: goldenrod;
 }
