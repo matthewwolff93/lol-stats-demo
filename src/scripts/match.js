@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as ApiHelper from './api-helper';
 import _ from 'lodash';
-import Promise from 'core-js/es6/promise';
 import '../styles/match.css';
 
 class Match extends Component {
@@ -15,6 +14,13 @@ class Match extends Component {
 			spell1: null,
 			spell2: null,
 			kda: null,
+			item1: null,
+			item2: null,
+			item3: null,
+			item4: null,
+			item5: null,
+			item6: null,
+			item7: null,
 			level: null,
 			totalCreepsKilled: null,
 			creepScorePerMinute: null
@@ -106,8 +112,16 @@ class Match extends Component {
 		const item7 = this.fetchItem(participant.stats.item6);
 
 		Promise.all([item1, item2, item3, item4, item5, item6, item7])
-			.then(response => this.setState({...this.state, }))
-			.catch(error => console.error(error));
+			.then(response => this.setState({
+				...this.state,
+				item1: response[0].data.name,
+				item2: response[1].data.name,
+				item3: response[2].data.name,
+				item4: response[3].data.name,
+				item5: response[4].data.name,
+				item6: response[5].data.name,
+				item7: response[6].data.name,
+			})).catch(error => console.error(error));
 	}
 
 	fetchItem(itemId) {
@@ -152,10 +166,10 @@ class Match extends Component {
 						<tr>
 							<td>{this.state.outcome}</td>
 							<td>{this.state.gameDuration}</td>
-							<td>{`${this.state.spell1} ${this.state.spell2}`}</td>
+							<td>{`${this.state.spell1}, ${this.state.spell2}`}</td>
 							<td>{this.state.championName}</td>
 							<td>{this.state.kda && `${this.state.kda.kills}/${this.state.kda.deaths}/${this.state.kda.assists}`}</td>
-							<td></td>
+							<td>{`${this.state.item1}, ${this.state.item2}, ${this.state.item3}, ${this.state.item4}, ${this.state.item5}, ${this.state.item6}, ${this.state.item7}`}</td>
 							<td>{this.state.level}</td>
 							<td>{this.state.totalCreepsKilled}</td>
 							<td>{this.state.creepScorePerMinute}</td>
@@ -167,4 +181,4 @@ class Match extends Component {
 	}
 }
 
-export default Match
+export default Match;
