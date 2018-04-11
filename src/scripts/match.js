@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import * as ApiHelper from './api-helper';
 import _ from 'lodash';
-import Promise from 'core-js/es6/promise'
+import Promise from 'core-js/es6/promise';
+import '../styles/match.css';
 
 class Match extends Component {
 
@@ -127,7 +128,7 @@ class Match extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="match">
 				<table>
 					<tbody>
 						<tr>

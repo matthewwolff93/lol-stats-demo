@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/match-list.css';
 import Match from './match';
+import '../styles/match-list.css';
 
 class MatchList extends Component {
 
@@ -13,8 +14,8 @@ class MatchList extends Component {
 
 	render() {
 		return (
-			<div>
-				<p>Match history</p>
+			<div className="match-list">
+				<h3>Match history</h3>
 				{this.renderMatches()}
 			</div>
 		);

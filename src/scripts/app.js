@@ -36,9 +36,9 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<h1 className="App-title">League of Legends Stats Demo</h1>
+			<div className="app">
+				<header>
+					<h1>League of Legends Stats Demo</h1>
 					<h2>{this.state.summonerName}</h2>
 				</header>
 				<main>
