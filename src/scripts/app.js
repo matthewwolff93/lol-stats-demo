@@ -14,9 +14,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		const data = JSON.parse('{"matches":[{"platformId":"OC1","gameId":203143152,"champion":22,"queue":450,"season":11,"timestamp":1521436233677,"role":"DUO","lane":"MID"},{"platformId":"OC1","gameId":197983753,"champion":16,"queue":450,"season":11,"timestamp":1516435947567,"role":"NONE","lane":"MID"}],"startIndex":0,"endIndex":20,"totalGames":22}');
-		this.setState({ matches: data.matches });
-
+		this.fetchRecentMatches(this.accountId);
 		this.fetchSummonerName(this.accountId);
 	}
 
